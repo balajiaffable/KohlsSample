@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.java.devops.kohls</groupId>
+	<artifactId>NexusMavenIntegration</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>NexusMavenIntegration Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<!-- <groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope> -->
+			<groupId>com.somecompany</groupId>
+			<artifactId>project</artifactId>
+			<version>1.0.0</version>
+			
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>NexusMavenIntegration</finalName>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.5.1</version>
+					<executions>
+						<execution>
+							<id>default-deploy</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions> 
+					<configuration>
+						<serverId>nexus</serverId>
+						<nexusUrl>http://localhost:8084/nexus</nexusUrl>
+						<skipStaging>true</skipStaging>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>maven-snapshots</id>
+			<url>http://localhost:8084/nexus/repository/maven-snapshots/</url>
+			<!-- <url>http://localhost:8084/nexus/content/repositories/snapshots</url> -->
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<repositories>
+    <repository>
+      <id>ThirdPartyInterface</id>
+      <url>http://localhost:8084/nexus/repository/ThirdPartyInterface/</url>
+    </repository>
+  </repositories>
+
+
+</project>
